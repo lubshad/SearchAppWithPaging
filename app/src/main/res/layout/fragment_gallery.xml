@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.fragment_gallery.FragmentGallery"
+    >
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/image_list"
+        android:layout_width="match_parent"
+        tools:listitem="@layout/upsplash_photo_item"
+        android:layout_height="match_parent"/>
+
+
+    <ProgressBar
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:id="@+id/progress_bar"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/retry_button"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retry"
+        />
+
+    <TextView
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_above="@id/retry_button"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:text="Result Could not be loaded"/>
+
+    <TextView
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:id="@+id/no_result_found"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:text="No items found with this query"/>
+
+
+
+</RelativeLayout>
