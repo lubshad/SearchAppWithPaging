@@ -1,22 +1,29 @@
 package com.example.searchPaging.ui.fragment_gallery
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
-import com.example.searchPaging.api.UnsplashApi
+import androidx.paging.cachedIn
+import com.example.searchPaging.data.UnsplashRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
 class FragmentGalleryViewModel @Inject constructor(
-    private val unsplashApi: UnsplashApi,
+    unsplashRepository: UnsplashRepository,
 ) : ViewModel() {
 
-    fun searchImage() {
-        viewModelScope.launch {
-            unsplashApi.searchPhotos(searchKey = "image", page = 1, perPage = 5)
-        }
+
+    private val searchQuery = MutableLiveData("")
+
+    val photos = searchQuery.switchMap { query ->
+        unsplashRepository.getSearchResult(query).cachedIn(viewModelScope)
+    }
+
+    fun searchPhotos(query: String) {
+        searchQuery.value = query
     }
 
 }
