@@ -20,7 +20,8 @@ class UnsplashPhotoAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UnsplashPhotoViewHolder {
-        val binding = UpsplashPhotoItemBinding.inflate(LayoutInflater.from(parent.context), parent , false)
+        val binding =
+            UpsplashPhotoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return UnsplashPhotoViewHolder(binding)
     }
@@ -29,9 +30,12 @@ class UnsplashPhotoAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: PixabayPhoto) {
             binding.apply {
+                userName.text = item.user
                 Glide.with(itemView)
                     .load(item.webformatURL)
+                    .centerCrop()
                     .into(imageView)
+
             }
         }
     }

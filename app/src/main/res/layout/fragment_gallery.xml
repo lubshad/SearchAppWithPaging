@@ -1,66 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.fragment_gallery.FragmentGallery"
-    >
+    tools:context=".ui.fragment_gallery.FragmentGallery">
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:background="@color/teal_200"
         android:id="@+id/image_list"
         android:layout_width="match_parent"
-        tools:listitem="@layout/upsplash_photo_item"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/upsplash_photo_item" />
 
 
     <ProgressBar
-        android:visibility="gone"
-        tools:visibility="visible"
         android:id="@+id/progress_bar"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/retry_button"
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:text="Retry"
-        />
+        android:visibility="gone"
+        tools:visibility="visible" />
 
     <TextView
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:layout_above="@id/retry_button"
         android:layout_width="match_parent"
-        android:textAlignment="center"
         android:layout_height="wrap_content"
-        android:text="Result Could not be loaded"/>
+        android:layout_above="@id/retry_button"
+        android:text="Result Could not be loaded"
+        android:textAlignment="center"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
     <TextView
-        android:visibility="gone"
-        tools:visibility="visible"
         android:id="@+id/no_result_found"
         android:layout_width="match_parent"
-        android:textAlignment="center"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_height="wrap_content"
-        android:text="No items found with this query"/>
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/fab"
-        android:layout_margin="10dp"
-        android:src="@drawable/ic_person"
-        android:layout_alignParentEnd="true"/>
+        android:text="No items found with this query"
+        android:textAlignment="center"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
 
 </RelativeLayout>

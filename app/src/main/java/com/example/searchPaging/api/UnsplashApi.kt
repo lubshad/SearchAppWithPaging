@@ -14,11 +14,10 @@ interface UnsplashApi {
     }
 
 
-
     @GET("api/?key=$CLIENT_ID")
     suspend fun searchPhotos(
         @Query("q") searchKey: String,
         @Query("page") page: Int,
-        @Query("per_page") perPage: Int
+        @Query("per_page") perPage: Int,
     ): PixabayApiResponse
 }
