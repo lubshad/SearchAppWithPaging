@@ -1,6 +1,7 @@
 package com.example.searchPaging.di
 
 import com.example.searchPaging.api.UnsplashApi
+import com.example.searchPaging.data.UnsplashRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

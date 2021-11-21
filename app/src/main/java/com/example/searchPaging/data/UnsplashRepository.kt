@@ -7,7 +7,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.example.searchPaging.api.UnsplashApi
-import com.example.searchPaging.data.unsplash.Result
+import com.example.searchPaging.data.unsplash.PixabayPhoto
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -16,7 +16,7 @@ import javax.inject.Singleton
 class UnsplashRepository @Inject constructor(
     private val unsplashApi: UnsplashApi,
 ) {
-    fun getSearchResult(query: String): LiveData<PagingData<Result>> {
+    fun getSearchResult(query: String): LiveData<PagingData<PixabayPhoto>> {
         return Pager(config = PagingConfig(
             pageSize = 20,
             maxSize = 100,

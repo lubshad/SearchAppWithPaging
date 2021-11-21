@@ -2,24 +2,23 @@ package com.example.searchPaging.api
 
 
 import com.example.searchPaging.BuildConfig
-import com.example.searchPaging.data.unsplash.UnsplashResponse
+import com.example.searchPaging.data.unsplash.PixabayApiResponse
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface UnsplashApi {
 
     companion object {
-        const val BASE_URL = "https://api.unsplash.com/"
-        const val CLIENT_ID = BuildConfig.CLIENT_ID
+        private const val CLIENT_ID = BuildConfig.CLIENT_ID
+        const val BASE_URL = "https://pixabay.com/"
     }
 
 
-    @Headers("Accept-Version: v1", "Authorization: Client-ID $CLIENT_ID")
-    @GET("/search/photos")
+
+    @GET("api/?key=$CLIENT_ID")
     suspend fun searchPhotos(
-        @Query("query") searchKey: String,
+        @Query("q") searchKey: String,
         @Query("page") page: Int,
         @Query("per_page") perPage: Int
-    ): UnsplashResponse
+    ): PixabayApiResponse
 }
