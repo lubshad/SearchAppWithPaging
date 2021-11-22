@@ -30,15 +30,5 @@ class FragmentGalleryViewModel @Inject constructor(
         searchQuery.value = query
     }
 
-    fun search(query: String) {
-        viewModelScope.launch {
-            val response = unsplashApi.searchPhotos(query, 1, 20)
-            Log.i("Search", response.toString())
-            for (photo in response.hits) {
-                Log.i("Search", photo.webformatURL)
-            }
-        }
-    }
-
 
 }

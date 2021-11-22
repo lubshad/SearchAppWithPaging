@@ -6,8 +6,9 @@
         <entry key="..\:/Users/AppDev/Desktop/ANDROID/SearchAppWithPaging/app/src/main/res/layout/activity_main.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/AppDev/Desktop/ANDROID/SearchAppWithPaging/app/src/main/res/layout/fragment_gallery.xml" value="0.192481884057971" />
         <entry key="..\:/Users/AppDev/Desktop/ANDROID/SearchAppWithPaging/app/src/main/res/layout/photo_load_state.xml" value="0.22" />
+        <entry key="..\:/Users/AppDev/Desktop/ANDROID/SearchAppWithPaging/app/src/main/res/menu/gallery_menu.xml" value="0.27291666666666664" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>
