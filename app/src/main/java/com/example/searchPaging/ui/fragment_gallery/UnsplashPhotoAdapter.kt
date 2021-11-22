@@ -37,7 +37,7 @@ class UnsplashPhotoAdapter :
                 Glide.with(itemView)
                     .load(item.webformatURL)
                     .centerCrop()
-                    .transition( DrawableTransitionOptions.withCrossFade())
+                    .transition(DrawableTransitionOptions.withCrossFade())
                     .into(imageView)
 
             }

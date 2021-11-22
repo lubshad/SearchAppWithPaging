@@ -26,7 +26,10 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery) {
 
         binding.apply {
             imageList.setHasFixedSize(true)
-            imageList.adapter = unsplashPhotoAdapter
+            imageList.adapter = unsplashPhotoAdapter.withLoadStateHeaderAndFooter(
+                header = PhotoLoadStateAdapter{unsplashPhotoAdapter.retry()},
+                footer = PhotoLoadStateAdapter{unsplashPhotoAdapter.retry()},
+            )
         }
 
         viewModel.photos.observe(viewLifecycleOwner) {
