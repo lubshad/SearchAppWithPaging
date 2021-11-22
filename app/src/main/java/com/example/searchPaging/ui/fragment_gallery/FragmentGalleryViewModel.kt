@@ -20,7 +20,7 @@ class FragmentGalleryViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    private val searchQuery = MutableLiveData("cat")
+     val searchQuery = MutableLiveData("cat")
 
     val photos = searchQuery.switchMap { query ->
         unsplashRepository.getSearchResult(query).cachedIn(viewModelScope)
