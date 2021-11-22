@@ -8,15 +8,17 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.example.searchPaging.R
+import com.example.searchPaging.data.unsplash.PixabayPhoto
 import com.example.searchPaging.databinding.FragmentGalleryBinding
 import com.example.searchPaging.utils.onSubmitText
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class FragmentGallery : Fragment(R.layout.fragment_gallery) {
+class FragmentGallery : Fragment(R.layout.fragment_gallery) , UnsplashPhotoAdapter.OnItemClickListener {
 
     private val viewModel by viewModels<FragmentGalleryViewModel>()
 
@@ -29,7 +31,7 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentGalleryBinding.bind(view)
-        unsplashPhotoAdapter = UnsplashPhotoAdapter()
+        unsplashPhotoAdapter = UnsplashPhotoAdapter(this)
 
 
         binding.apply {
@@ -88,5 +90,10 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery) {
             searchView.clearFocus()
             binding.imageList.scrollToPosition(0)
         }
+    }
+
+    override fun onClick(photo: PixabayPhoto) {
+        val action = FragmentGalleryDirections.actionFragmentGalleryToFragmentDetails(photo)
+        findNavController().navigate(action)
     }
 }

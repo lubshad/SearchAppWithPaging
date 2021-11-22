@@ -1,5 +1,10 @@
 package com.example.searchPaging.data.unsplash
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+
+@Parcelize
 data class PixabayPhoto(
     val comments: Int,
     val downloads: Int,
@@ -24,4 +29,4 @@ data class PixabayPhoto(
     val webformatHeight: Int,
     val webformatURL: String,
     val webformatWidth: Int,
-)
+) : Parcelable

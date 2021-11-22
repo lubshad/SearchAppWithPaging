@@ -6,13 +6,11 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.TransitionOptions
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.transition.DrawableCrossFadeTransition
 import com.example.searchPaging.data.unsplash.PixabayPhoto
 import com.example.searchPaging.databinding.UpsplashPhotoItemBinding
 
-class UnsplashPhotoAdapter :
+class UnsplashPhotoAdapter(private val itemClickListener: OnItemClickListener) :
     PagingDataAdapter<PixabayPhoto, UnsplashPhotoAdapter.UnsplashPhotoViewHolder>(PhotoComparator) {
 
     override fun onBindViewHolder(holder: UnsplashPhotoViewHolder, position: Int) {
@@ -29,8 +27,21 @@ class UnsplashPhotoAdapter :
         return UnsplashPhotoViewHolder(binding)
     }
 
-    class UnsplashPhotoViewHolder(private val binding: UpsplashPhotoItemBinding) :
+    inner class UnsplashPhotoViewHolder(private val binding: UpsplashPhotoItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+
+        init {
+            binding.root.setOnClickListener {
+                val position = bindingAdapterPosition
+                val photo = getItem(position)
+                if (photo != null) {
+                    itemClickListener.onClick(photo)
+                }
+            }
+        }
+
+
         fun bind(item: PixabayPhoto) {
             binding.apply {
                 userName.text = item.user
@@ -42,6 +53,11 @@ class UnsplashPhotoAdapter :
 
             }
         }
+    }
+
+
+    interface OnItemClickListener {
+        fun onClick(photo: PixabayPhoto)
     }
 
 
