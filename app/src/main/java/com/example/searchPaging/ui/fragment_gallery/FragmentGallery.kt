@@ -13,7 +13,6 @@ import com.example.searchPaging.R
 import com.example.searchPaging.databinding.FragmentGalleryBinding
 import com.example.searchPaging.utils.onSubmitText
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.combine
 
 
 @AndroidEntryPoint
@@ -21,9 +20,9 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery) {
 
     private val viewModel by viewModels<FragmentGalleryViewModel>()
 
-    lateinit var unsplashPhotoAdapter: UnsplashPhotoAdapter
+    private lateinit var unsplashPhotoAdapter: UnsplashPhotoAdapter
 
-    lateinit var binding: FragmentGalleryBinding
+    private lateinit var binding: FragmentGalleryBinding
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,8 +48,7 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery) {
             unsplashPhotoAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
 
-        unsplashPhotoAdapter.addLoadStateListener {
-            combinedLoadStates ->
+        unsplashPhotoAdapter.addLoadStateListener { combinedLoadStates ->
 
             binding.apply {
                 progressBar.isVisible = combinedLoadStates.source.refresh is LoadState.Loading
@@ -63,8 +61,7 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery) {
                 if (combinedLoadStates.source.refresh is LoadState.NotLoading && combinedLoadStates.append.endOfPaginationReached && unsplashPhotoAdapter.itemCount == 0) {
                     imageList.isVisible = false
                     noResultFound.isVisible = true
-                }
-                else {
+                } else {
                     noResultFound.isVisible = false
                 }
             }
