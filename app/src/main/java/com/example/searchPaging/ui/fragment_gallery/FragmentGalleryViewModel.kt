@@ -1,6 +1,6 @@
 package com.example.searchPaging.ui.fragment_gallery
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
@@ -13,10 +13,16 @@ import javax.inject.Inject
 @HiltViewModel
 class FragmentGalleryViewModel @Inject constructor(
     unsplashRepository: UnsplashRepository,
+    state: SavedStateHandle,
 ) : ViewModel() {
 
+    companion object {
+        const val SEARCH_QUERY = "search_query"
+        const val DEFAULT_QUERY = "cats"
+    }
 
-    private val searchQuery = MutableLiveData("cat")
+
+    private val searchQuery = state.getLiveData(SEARCH_QUERY, DEFAULT_QUERY)
 
     val photos = searchQuery.switchMap { query ->
         unsplashRepository.getSearchResult(query).cachedIn(viewModelScope)
