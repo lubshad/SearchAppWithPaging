@@ -1,5 +1,6 @@
 package com.example.searchapp.domain.pixabay_api
 
+
 import com.example.searchapp.BuildConfig
 import com.example.searchapp.data.models.pixabay.PixabayResponse
 import retrofit2.http.GET
@@ -19,7 +20,7 @@ interface PixabayApi {
     @GET("api/?key=$PIXABAY_KEY")
     suspend fun searchPhoto(
         @Query("q") query: String,
-        @Query("page")page: Int,
+        @Query("page") page: Int,
         @Query("per_page") perPage: Int
     ): PixabayResponse
 }

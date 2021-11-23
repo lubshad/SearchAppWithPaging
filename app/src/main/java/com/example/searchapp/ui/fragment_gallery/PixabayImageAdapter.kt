@@ -2,6 +2,7 @@
 
 package com.example.searchapp.ui.fragment_gallery
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -51,7 +52,7 @@ class PixabayImageAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PixabayImageViewHolder {
-        val binding = PixabayImageItemBinding.bind(parent)
+        val binding = PixabayImageItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PixabayImageViewHolder(binding)
     }
 

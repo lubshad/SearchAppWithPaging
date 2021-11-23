@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 package com.example.searchapp.ui.fragment_gallery
 
 import android.os.Bundle
@@ -19,7 +21,16 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery) {
 
 
         val binding = FragmentGalleryBinding.bind(view)
+        val pixabayImageAdapter = PixabayImageAdapter()
 
+        binding.apply {
+            recycerViewGallery.adapter = pixabayImageAdapter
+        }
+
+        viewModel.photos.observe(viewLifecycleOwner) {
+            pagingData->
+            pixabayImageAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
+        }
     }
 }
 

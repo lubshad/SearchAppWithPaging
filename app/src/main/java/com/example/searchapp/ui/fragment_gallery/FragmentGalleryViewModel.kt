@@ -1,33 +1,31 @@
+@file:Suppress("SpellCheckingInspection")
+
 package com.example.searchapp.ui.fragment_gallery
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.searchapp.domain.pixabay_api.PixabayApi
+import androidx.lifecycle.*
+import com.example.searchapp.domain.pixabay_api.PixabayRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 
 
 @HiltViewModel
 class FragmentGalleryViewModel @Inject constructor(
-    private val pixabayApi: PixabayApi
-): ViewModel() {
-
+    private val pixabayRepository: PixabayRepository,
+    state: SavedStateHandle
+) : ViewModel() {
 
     companion object {
-        const val TAG = "Gallery"
+        const val DEFAULT_SEARCH_QUERY = "Cats"
+        const val CURRENT_SEARCH_QUERY = "current_search_query"
     }
 
 
-    fun searchImage(query: String) {
-        viewModelScope.launch {
-            val response = pixabayApi.searchPhoto(query, 1, 20)
-            response
-                .hits.forEach {
-                    Log.i(TAG, it.user)
-                }
-        }
+    val searchQuery = state.getLiveData(CURRENT_SEARCH_QUERY, DEFAULT_SEARCH_QUERY)
+
+
+    val photos = searchQuery.switchMap { searchQuery ->
+        pixabayRepository.getSearchResultStream(searchQuery)
     }
+
+
 }
