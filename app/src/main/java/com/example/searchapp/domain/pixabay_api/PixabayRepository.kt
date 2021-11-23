@@ -21,8 +21,8 @@ class PixabayRepository @Inject constructor(
     fun getSearchResultStream(query: String): LiveData<PagingData<Hit>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 20,
-                maxSize = 100,
+                pageSize = 5,
+                maxSize = 20,
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { PixabayPagingSource(pixabayApi, query) }

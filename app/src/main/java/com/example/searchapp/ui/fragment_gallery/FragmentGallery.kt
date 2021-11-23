@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
 import com.example.searchapp.R
 import com.example.searchapp.databinding.FragmentGalleryBinding
 import com.example.searchapp.utils.onQuerySubmit
@@ -19,19 +21,38 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery) {
     private val viewModel by viewModels<FragmentGalleryViewModel>()
 
 
+    private lateinit var binding: FragmentGalleryBinding
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val binding = FragmentGalleryBinding.bind(view)
+        binding = FragmentGalleryBinding.bind(view)
         val pixabayImageAdapter = PixabayImageAdapter()
 
         binding.apply {
-            recycerViewGallery.adapter = pixabayImageAdapter
+            recyclerViewGallery.adapter = pixabayImageAdapter
+            recyclerViewGallery.itemAnimator = null
         }
 
         viewModel.photos.observe(viewLifecycleOwner) { pagingData ->
             pixabayImageAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
+        }
+
+        pixabayImageAdapter.addLoadStateListener { loadState ->
+
+            binding.apply {
+                recyclerViewGallery.isVisible == loadState.source.refresh is LoadState.NotLoading
+                galleryLoading.isVisible = loadState.source.refresh is LoadState.Loading
+
+                if (loadState.source.refresh is LoadState.NotLoading &&
+                    loadState.append.endOfPaginationReached &&
+                    pixabayImageAdapter.itemCount < 1
+                ) {
+                    recyclerViewGallery.isVisible = false
+                }
+            }
+
         }
 
         setHasOptionsMenu(true)
@@ -50,6 +71,8 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery) {
         searchView.onQuerySubmit {
             viewModel.searchQuery.value = it
             searchView.clearFocus()
+            binding
+                .recyclerViewGallery.scrollToPosition(0)
         }
     }
 }
