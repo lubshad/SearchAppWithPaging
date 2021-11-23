@@ -39,8 +39,8 @@ class PixabayLoadStateAdapter(private val retry: ()->Unit) : LoadStateAdapter<Pi
         fun bind(loadState: LoadState) {
             binding.apply {
                 progressCircularLoadingMore.isVisible = loadState is LoadState.Loading
-                textViewError.isVisible = loadState !is LoadState.Loading
-                retryButton.isVisible = loadState !is LoadState.Loading
+                textViewError.isVisible = loadState is LoadState.Error
+                retryButton.isVisible = loadState is LoadState.Error
             }
         }
 

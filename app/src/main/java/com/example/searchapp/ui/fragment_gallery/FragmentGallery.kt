@@ -31,11 +31,17 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery) {
         val pixabayImageAdapter = PixabayImageAdapter()
 
         binding.apply {
+
+
             recyclerViewGallery.adapter = pixabayImageAdapter.withLoadStateHeaderAndFooter(
                 header = PixabayLoadStateAdapter { pixabayImageAdapter.retry() },
                 footer = PixabayLoadStateAdapter { pixabayImageAdapter.retry() }
             )
             recyclerViewGallery.itemAnimator = null
+
+            retryButton.setOnClickListener {
+                pixabayImageAdapter.retry()
+            }
         }
 
         viewModel.photos.observe(viewLifecycleOwner) { pagingData ->
@@ -48,16 +54,18 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery) {
                 galleryLoading.isVisible = loadState.source.refresh is LoadState.Loading
                 retryButton.isVisible = loadState.source.refresh is LoadState.Error
                 textViewError.isVisible = loadState.source.refresh is LoadState.Error
-                recyclerViewGallery.isVisible = loadState.source.refresh !is LoadState.Error && loadState.source.refresh is LoadState.NotLoading
+                recyclerViewGallery.isVisible =
+                    loadState.source.refresh !is LoadState.Error && loadState.source.refresh !is LoadState.Loading && pixabayImageAdapter.itemCount > 0
 
 
 
-                if (loadState.source.refresh is LoadState.NotLoading &&
-                    loadState.append.endOfPaginationReached &&
-                    pixabayImageAdapter.itemCount == 0
+                if (loadState.refresh is LoadState.NotLoading &&
+                    pixabayImageAdapter.itemCount < 1
                 ) {
                     recyclerViewGallery.isVisible = false
                     textViewNoItem.isVisible = true
+                } else {
+                    textViewNoItem.isVisible = false
                 }
             }
 
