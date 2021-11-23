@@ -20,13 +20,6 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery) {
 
         val binding = FragmentGalleryBinding.bind(view)
 
-        binding.apply {
-            fab.setOnClickListener {
-                viewModel.searchImage("Cats")
-            }
-        }
-
-//        viewModel.searchImage("Cats")
     }
 }
 
