@@ -31,7 +31,10 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery) {
         val pixabayImageAdapter = PixabayImageAdapter()
 
         binding.apply {
-            recyclerViewGallery.adapter = pixabayImageAdapter
+            recyclerViewGallery.adapter = pixabayImageAdapter.withLoadStateHeaderAndFooter(
+                header = PixabayLoadStateAdapter { pixabayImageAdapter.retry() },
+                footer = PixabayLoadStateAdapter { pixabayImageAdapter.retry() }
+            )
             recyclerViewGallery.itemAnimator = null
         }
 
@@ -42,14 +45,19 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery) {
         pixabayImageAdapter.addLoadStateListener { loadState ->
 
             binding.apply {
-                recyclerViewGallery.isVisible == loadState.source.refresh is LoadState.NotLoading
                 galleryLoading.isVisible = loadState.source.refresh is LoadState.Loading
+                retryButton.isVisible = loadState.source.refresh is LoadState.Error
+                textViewError.isVisible = loadState.source.refresh is LoadState.Error
+                recyclerViewGallery.isVisible = loadState.source.refresh !is LoadState.Error && loadState.source.refresh is LoadState.NotLoading
+
+
 
                 if (loadState.source.refresh is LoadState.NotLoading &&
                     loadState.append.endOfPaginationReached &&
-                    pixabayImageAdapter.itemCount < 1
+                    pixabayImageAdapter.itemCount == 0
                 ) {
                     recyclerViewGallery.isVisible = false
+                    textViewNoItem.isVisible = true
                 }
             }
 

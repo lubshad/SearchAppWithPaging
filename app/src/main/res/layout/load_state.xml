@@ -17,7 +17,7 @@
         tools:visibility="visible"
         android:id="@+id/text_view_error"
         android:textAlignment="center"
-        tools:text = "Error loading items"
+        android:text = "Error loading items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

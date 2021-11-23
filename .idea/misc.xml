@@ -3,15 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/AppDev/Desktop/ANDROID/SearchAppWithPaging/app/src/main/res/drawable/ic_person.xml" value="0.19444444444444445" />
-        <entry key="..\:/Users/AppDev/Desktop/ANDROID/SearchAppWithPaging/app/src/main/res/layout/activity_main.xml" value="0.27291666666666664" />
-        <entry key="..\:/Users/AppDev/Desktop/ANDROID/SearchAppWithPaging/app/src/main/res/layout/fragment_gallery.xml" value="0.192481884057971" />
-        <entry key="..\:/Users/AppDev/Desktop/ANDROID/SearchAppWithPaging/app/src/main/res/layout/photo_load_state.xml" value="0.22" />
-        <entry key="..\:/Users/AppDev/Desktop/ANDROID/SearchAppWithPaging/app/src/main/res/layout/pixabay_image_item.xml" value="0.1390625" />
-        <entry key="..\:/Users/AppDev/Desktop/ANDROID/SearchAppWithPaging/app/src/main/res/menu/fragment_gallery_menu.xml" value="0.27291666666666664" />
-        <entry key="..\:/Users/AppDev/Desktop/ANDROID/SearchAppWithPaging/app/src/main/res/menu/gallery_menu.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/LUBSHAD/Desktop/ANDROID/SearchApp/app/src/main/res/drawable/gradient.xml" value="0.2203125" />
+        <entry key="..\:/Users/LUBSHAD/Desktop/ANDROID/SearchApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/LUBSHAD/Desktop/ANDROID/SearchApp/app/src/main/res/layout/fragment_gallery.xml" value="0.25" />
+        <entry key="..\:/Users/LUBSHAD/Desktop/ANDROID/SearchApp/app/src/main/res/layout/gallery_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/LUBSHAD/Desktop/ANDROID/SearchApp/app/src/main/res/layout/load_state.xml" value="0.33" />
+        <entry key="..\:/Users/LUBSHAD/Desktop/ANDROID/SearchApp/app/src/main/res/layout/pixabay_image_item.xml" value="0.2" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
 </project>
