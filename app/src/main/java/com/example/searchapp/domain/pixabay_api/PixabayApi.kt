@@ -1,6 +1,7 @@
 package com.example.searchapp.domain.pixabay_api
 
 import com.example.searchapp.BuildConfig
+import com.example.searchapp.data.models.pixabay.PixabayResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 import javax.inject.Singleton
@@ -20,5 +21,5 @@ interface PixabayApi {
         @Query("q") query: String,
         @Query("page")page: Int,
         @Query("per_page") perPage: Int
-    ): PixabayApi
+    ): PixabayResponse
 }
