@@ -21,6 +21,8 @@ class PixabayImageAdapter :
     inner class PixabayImageViewHolder(private val binding: PixabayImageItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+
+
         fun bind(item: Hit) {
             binding.apply {
                 Glide.with(itemView)
